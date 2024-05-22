@@ -5,7 +5,8 @@ const mediaArray = [
         year: 2010,
         genre: "Sci-Fi",
         rating: 8.8,
-        type: "movie"
+        type: "movie",
+        price: 3.99
     },
     {
         title: "Breaking Bad",
@@ -13,14 +14,16 @@ const mediaArray = [
         genre: "Drama",
         rating: 9.5,
         type: "tv",
-        seasons: 5
+        seasons: 5,
+        price: 3.99
     },
     {
         title: "The Dark Knight",
         year: 2008,
         genre: "Action",
         rating: 9.0,
-        type: "movie"
+        type: "movie",
+        price: 3.99
     },
     {
         title: "Stranger Things",
@@ -28,14 +31,16 @@ const mediaArray = [
         genre: "Horror",
         rating: 8.7,
         type: "tv",
-        seasons: 4
+        seasons: 4,
+        price: 3.99
     },
     {
         title: "The Matrix",
         year: 1999,
         genre: "Sci-Fi",
         rating: 8.7,
-        type: "movie"
+        type: "movie",
+        price: 3.99
     },
     {
         title: "Game of Thrones",
@@ -43,7 +48,8 @@ const mediaArray = [
         genre: "Adventure",
         rating: 9.3,
         type: "tv",
-        seasons: 8
+        seasons: 8,
+        price: 3.99
     }
 ];
 

@@ -6,14 +6,16 @@ class Movie {
     #genre;
     #rating;
     #type;
+    #price = 3.99;
 
     // Definisco il costruttore
-    constructor(title, year, genre, rating, type) {
+    constructor(title, year, genre, rating, type, price) {
         this.#title = title,
         this.#year = year,
         this.#genre = genre,
         this.#rating = rating,
-        this.#type = type
+        this.#type = type,
+        this.#price = price
     }
     // Definisco una funzione per ritornare una stringa con i dati del film
     toString() {
@@ -61,6 +63,13 @@ class Movie {
         return this.#type;
     }
 
+    set price(price) {
+        this.#price = price;
+    }
+
+    get price() {
+        return this.#price;
+    }
 
 }
 
@@ -68,9 +77,9 @@ class TvSerie extends Movie {
     #seasons;
 
     // Definisco il costruttore 
-    constructor(title, year, genre, rating, type, seasons) {
+    constructor(title, year, genre, rating, type, price, seasons) {
         // Richiamo il costruttore della classe genitore
-        super(title, year, genre, rating, type);
+        super(title, year, genre, rating, type, price);
         this.#seasons = seasons;
     }
     // Eseguo l'overridding del metodo del genitore per ritornare una stringa con i dati della serie TV
@@ -169,8 +178,18 @@ class Cart {
     printPrice() {
         let price = 0;
         
-        this.cart.forEach(elem => price += 3.99);
+        this.cart.forEach(elem => price += elem.price);
 
         return price;
     }
 }
+
+const cart = new Cart([]);
+
+cart.addMedia(mediaArray[0]);
+
+cart.addMedia(mediaArray[3]);
+
+cart.addMedia(mediaArray[5]);
+
+console.log(cart.printPrice());

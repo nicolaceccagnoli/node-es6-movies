@@ -1,3 +1,5 @@
+const { create } = require("domain");
+
 // Definisco un array di oggetti dove ogni oggetto rappresenta un film o una serie TV
 const mediaArray = [
     {
@@ -10,7 +12,7 @@ const mediaArray = [
     {
         title: "Breaking Bad",
         year: 2008,
-        genre: "Crime, Drama, Thriller",
+        genre: "Drama",
         rating: 9.5,
         type: "tv",
         seasons: 5
@@ -18,14 +20,14 @@ const mediaArray = [
     {
         title: "The Dark Knight",
         year: 2008,
-        genre: "Action, Crime, Drama",
+        genre: "Action",
         rating: 9.0,
         type: "movie"
     },
     {
         title: "Stranger Things",
         year: 2016,
-        genre: "Drama, Fantasy, Horror",
+        genre: "Horror",
         rating: 8.7,
         type: "tv",
         seasons: 4
@@ -33,14 +35,14 @@ const mediaArray = [
     {
         title: "The Matrix",
         year: 1999,
-        genre: "Action, Sci-Fi",
+        genre: "Sci-Fi",
         rating: 8.7,
         type: "movie"
     },
     {
         title: "Game of Thrones",
         year: 2011,
-        genre: "Action, Adventure, Drama",
+        genre: "Adventure",
         rating: 9.3,
         type: "tv",
         seasons: 8
@@ -63,7 +65,7 @@ class Movie {
     }
 }
 
-class TvSeries extends Movie {
+class TvSerie extends Movie {
     // Definisco il costruttore 
     constructor(title, year, genre, rating, type, seasons) {
         // Richiamo il costruttore della classe genitore
@@ -75,3 +77,30 @@ class TvSeries extends Movie {
         return `${this.title} è una serie tv di genere ${this.genre}. La prima stagione è stata rilasciata nel ${this.year} ed in totale sono state prodotte ${this.seasons} stagioni. Ha un voto di ${this.rating}`;
     }
 }
+
+
+// Definisco una funzione con la quale per ogni oggetto di mediaArray istanzio una nuova classe di Movie o TvSeries
+const createClass = mediaArray.map(obj => {
+    if (obj.type === 'movie') {
+        return new Movie(obj.title, obj.year, obj.genre, obj.rating, obj.type);
+    } else if (obj.type === 'tv') {
+        return new TvSerie(obj.title, obj.year, obj.genre, obj.rating, obj.type, obj.seasons);
+    }
+});
+
+// Definisco una funzione che determini la media di tutti i film e serie Tv per un determinato genere
+function average(arr, genre) {
+    let votes = [];
+
+    let avg = 0;
+
+    arr.forEach(element => {
+        if (element.genre == genre) {
+            votes.push(element.rating)
+        };
+    });
+
+    return avg = votes.reduce((a, b) => (a + b), 0) / votes.length;
+};
+
+console.log(average(createClass, 'Sci-Fi'));

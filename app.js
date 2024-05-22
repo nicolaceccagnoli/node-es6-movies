@@ -51,31 +51,91 @@ const mediaArray = [
 
 // Definisco una classe Movie
 class Movie {
+    #title;
+    #year;
+    #genre;
+    #rating;
+    #type;
+
     // Definisco il costruttore
     constructor(title, year, genre, rating, type) {
-        this.title = title,
-        this.year = year,
-        this.genre = genre,
-        this.rating = rating,
-        this.type = type
+        this.#title = title,
+        this.#year = year,
+        this.#genre = genre,
+        this.#rating = rating,
+        this.#type = type
     }
     // Definisco una funzione per ritornare una stringa con i dati del film
     toString() {
-        return `${this.title} è un film di genere ${this.genre}. E' stato rilasciato nel ${this.year} ed ha un voto di ${this.rating}`;
+        return `${this.#title} è un film di genere ${this.#genre}. E' stato rilasciato nel ${this.#year} ed ha un voto di ${this.#rating}`;
     }
+    
+    // Definisco setter e getter per tutti gli attributi private
+    set title(title) {
+        this.#title = title;
+    }
+
+    get title() {
+        return this.#title;
+    }
+
+    set year(year) {
+        this.#year = year;
+    }
+
+    get year() {
+        return this.#year;
+    }
+
+    set genre(genre) {
+        this.#genre = genre;
+    }
+
+    get genre() {
+        return this.#genre;
+    }
+
+    set rating(rating) {
+        this.#rating = rating;
+    }
+
+    get rating() {
+        return this.#rating;
+    }
+
+    set type(type) {
+        this.#type = type;
+    }
+
+    get type() {
+        return this.#type;
+    }
+
+
 }
 
 class TvSerie extends Movie {
+    #seasons;
+
     // Definisco il costruttore 
     constructor(title, year, genre, rating, type, seasons) {
         // Richiamo il costruttore della classe genitore
         super(title, year, genre, rating, type);
-        this.seasons = seasons;
+        this.#seasons = seasons;
     }
     // Eseguo l'overridding del metodo del genitore per ritornare una stringa con i dati della serie TV
     toString() {
         return `${this.title} è una serie tv di genere ${this.genre}. La prima stagione è stata rilasciata nel ${this.year} ed in totale sono state prodotte ${this.seasons} stagioni. Ha un voto di ${this.rating}`;
     }
+
+    set seasons(seasons) {
+        this.#seasons = seasons;
+    }
+
+    get seasons() {
+        return this.#seasons;
+    }
+
 }
 
 
@@ -87,6 +147,7 @@ const createClass = mediaArray.map(obj => {
         return new TvSerie(obj.title, obj.year, obj.genre, obj.rating, obj.type, obj.seasons);
     }
 });
+
 
 // Definisco una funzione che determini la media di tutti i film e serie TV per un determinato genere
 function average(arr, genre) {
@@ -102,6 +163,8 @@ function average(arr, genre) {
 
     return avg = votes.reduce((a, b) => (a + b), 0) / votes.length;
 };
+
+console.log(average(createClass, 'Sci-Fi'));
 
 // Definisco una funzione che restituisca una lista dei generi di tutti i film e serie TV senza che questi si ripetano
 function genres(arr) {

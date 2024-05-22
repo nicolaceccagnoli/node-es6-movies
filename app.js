@@ -164,8 +164,6 @@ function average(arr, genre) {
     return avg = votes.reduce((a, b) => (a + b), 0) / votes.length;
 };
 
-console.log(average(createClass, 'Sci-Fi'));
-
 // Definisco una funzione che restituisca una lista dei generi di tutti i film e serie TV senza che questi si ripetano
 function genres(arr) {
     let genres = [];
@@ -193,4 +191,34 @@ function filter(arr, genre) {
     return result;
 }   
 
-console.log(filter(createClass, 'Sci-Fi'));
+
+// Definisco una nuova classe Cart dove posso salvare i film che intendo noleggiare
+class Cart {
+    constructor(cart) {
+        this.cart = cart;
+    }
+
+    addMedia(media) {
+        if (!this.cart.includes(media)) {
+            this.cart.push(media)
+        }
+        return this.cart;
+    };
+
+    removeMedia(media) {
+        const index = this.cart.indexOf(media);
+        if (index !== -1) {
+            this.cart.splice(index, 1);
+        }
+
+        return this.cart;
+    };
+
+    printPrice() {
+        let price = 0;
+        
+        this.cart.forEach(elem => price += 3.99);
+
+        return price;
+    }
+}

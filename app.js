@@ -88,7 +88,7 @@ const createClass = mediaArray.map(obj => {
     }
 });
 
-// Definisco una funzione che determini la media di tutti i film e serie Tv per un determinato genere
+// Definisco una funzione che determini la media di tutti i film e serie TV per un determinato genere
 function average(arr, genre) {
     let votes = [];
 
@@ -103,4 +103,17 @@ function average(arr, genre) {
     return avg = votes.reduce((a, b) => (a + b), 0) / votes.length;
 };
 
-console.log(average(createClass, 'Sci-Fi'));
+// Definisco una funzione che restituisca una lista dei generi di tutti i film e serie TV senza che questi si ripetano
+function genres(arr) {
+    let genres = [];
+
+    arr.forEach(elem => {
+        if (!genres.includes(elem.genre)) {
+            genres.push(elem.genre);
+        }
+    })
+
+    return genres;
+};
+
+console.log(genres(createClass));

@@ -116,4 +116,18 @@ function genres(arr) {
     return genres;
 };
 
-console.log(genres(createClass));
+// Definisco una funzione che filtri i film e le serie TV in base al genere per restituire un array con all'interno
+// il risultato della funzione toString() di ogni istanza
+function filter(arr, genre) {
+    const result = [];
+
+    arr.forEach(elem => {
+        if (elem.genre == genre) {
+            result.push(elem.toString());
+        }
+    })
+
+    return result;
+}   
+
+console.log(filter(createClass, 'Sci-Fi'));
